@@ -1,59 +1,11 @@
-var mosca = require('mosca')
- 
- 
-//here we start mosca
-var http     = require('http')
-  , httpServ = http.createServer()
-  , mosca    = require('mosca')
-  , server = new mosca.Server({});
+var http = require('http');
+var url = require('url');
 
-server.attachHttpServer(httpServ);
-
-httpServ.listen(process.env.PORT || 3000);
-
-server.on('ready', setup);
-
-var authenticate = function(client, username, password, callback) {
-	var authorized = (username === 'user' && password.toString() === 'password');
-	if (authorized) client.user = username;
-	callback(null, authorized);
-} 
-
-// fired when the mqtt server is ready
-function setup() {
-	// Accepts the connection if the username and password are valid
-	server.authenticate = authenticate;
-	console.log('Mosca server is up and running');
-	console.log(process.env.PORT)
-}
- 
-// fired whena  client is connected
-server.on('clientConnected', function(client) {
-	console.log('client connected', client.id);
-	});
- 
-// fired when a message is received
-server.on('published', function(packet, client) {
-	console.log('Published : ', packet.payload.toString());
-	});
- 
-// fired when a client subscribes to a topic
-server.on('subscribed', function(topic, client) {
-	console.log('subscribed : ', topic);
-	});
- 
-// fired when a client subscribes to a topic
-server.on('unsubscribed', function(topic, client) {
-	console.log('unsubscribed : ', topic);
-	});
- 
-// fired when a client is disconnecting
-server.on('clientDisconnecting', function(client) {
-	console.log('clientDisconnecting : ', client.id);
-	});
- 
-// fired when a client is disconnected
-server.on('clientDisconnected', function(client) {
-	console.log('clientDisconnected : ', client.id);
-	});
-
+var server = http.createServer(function(req, res) {
+    var page = url.parse(req.url).pathname;
+    console.log(page);
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.write('Bien le bonjour');
+    res.end();
+});
+server.listen(process.env.PORT);
