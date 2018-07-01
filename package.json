@@ -1,0 +1,17 @@
+{
+  "name": "Priv Conv",
+  "description": "",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.1",
+    "express": "4.12.x",
+    "mongoose": "*",
+    "mosca": "*",
+    "mqtt": "*"
+  }
+}
