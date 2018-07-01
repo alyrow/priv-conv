@@ -23,7 +23,8 @@ var authenticate = function(client, username, password, callback) {
 function setup() {
 	// Accepts the connection if the username and password are valid
 	server.authenticate = authenticate;
-	console.log('Mosca server is up and running')
+	console.log('Mosca server is up and running');
+	console.log(process.env.PORT)
 }
  
 // fired whena  client is connected
