@@ -7,7 +7,7 @@
   },
   "dependencies": {
     
-    "mosca": "*",
+    "url": "*",
     "http": "*"
   }
 }
