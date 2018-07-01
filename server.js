@@ -9,7 +9,7 @@ var http     = require('http')
 
 server.attachHttpServer(httpServ);
 
-httpServ.listen(3000);
+httpServ.listen(process.env.PORT || 3000);
 
 server.on('ready', setup);
 
